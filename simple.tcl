@@ -1,5 +1,8 @@
 set ns [new Simulator]
 
+$ns color 1 Blue
+$ns color 2 Red
+
 set nf [open bus.nam w]
 $ns namtrace-all $nf
 
@@ -12,7 +15,12 @@ $ns duplex-link $n0 $n1 1Mb 10ms DropTail
 $ns duplex-link $n1 $n2 1Mb 10ms DropTail
 $ns duplex-link $n2 $n3 1Mb 10ms DropTail
 
+$ns duplex-link-op $n0 $n1 orient right
+$ns duplex-link-op $n1 $n2 orient right
+$ns duplex-link-op $n2 $n3 orient right
+
 set udp [new Agent/UDP]
+$udp set fid_ 1
 $ns attach-agent $n0 $udp
 
 set null [new Agent/Null]
