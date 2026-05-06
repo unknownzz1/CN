@@ -3,14 +3,12 @@ INF = 9999
 def distance_vector(n, cost):
     dist = [row[:] for row in cost]
     next_hop = [[-1]*n for _ in range(n)]
-
-    # Initialize
+    
     for i in range(n):
         for j in range(n):
             if cost[i][j] != INF and i != j:
                 next_hop[i][j] = j
 
-    # Bellman-Ford style update
     for i in range(n):
         for j in range(n):
             for k in range(n):
@@ -18,14 +16,13 @@ def distance_vector(n, cost):
                     dist[i][j] = dist[i][k] + dist[k][j]
                     next_hop[i][j] = next_hop[i][k]
 
-    # Print routing table
     for i in range(n):
         print(f"\nRouter {i+1} Table:")
         print("Dest\tNextHop\tDist")
         for j in range(n):
             print(j+1, next_hop[i][j]+1, dist[i][j], sep="\t")
 
-# Example
+
 n = 4
 cost = [
     [0,1,3,INF],
