@@ -16,7 +16,7 @@ def dijkstra(n, cost, src):
                 dist[v] = dist[u] + cost[u][v]
                 parent[v] = u
 
-    # Find next hop
+
     next_hop = [-1]*n
     for i in range(n):
         if i == src or parent[i] == -1:
@@ -29,7 +29,6 @@ def dijkstra(n, cost, src):
     return dist, next_hop
 
 
-# Example graph (same style as your C code)
 n = 4
 cost = [
     [0,1,3,INF],
@@ -38,7 +37,7 @@ cost = [
     [INF,INF,4,0]
 ]
 
-# Routing table for each router
+
 for i in range(n):
     print(f"\nRouter {i+1} Table:")
     print("Dest\tNextHop\tDist")
